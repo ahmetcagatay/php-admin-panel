@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Şifre Değiştir</title>
+	<title>Change Password</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -53,18 +53,18 @@
 			} else {
 				$email = $_POST["email"];
 
-				// KULLANICIYI SORGULA
+				// query to member with email
 				$sql = "SELECT * FROM members WHERE email='$email'";
 				$result = $conn->query($sql);
 
 				if ($result->num_rows > 0) {
-					// TÜM EŞLEŞEN SONUÇLARA BAK
+					// look all matcher results
 					while ($row = $result->fetch_assoc()) {
-						// EĞER EMAİL VARSA
+						// if there is an email
 						header("Location:emailcheck.php?email=$email");
 					}
 				} else {
-					$feedback = "E-Posta Bulunamadı";
+					$feedback = "E-mail not found";
 				}
 			}
 			$conn->close();
@@ -83,22 +83,22 @@
 						if (isset($feedback)) {
 							echo $feedback;
 						} else {
-							echo "Şifre Değiştir";
+							echo "Change Password";
 						}
 						?>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Email adresiniz şu şekilde olmalıdır: ornek@mail.com">
+					<div class="wrap-input100 validate-input" data-validate="Email address it should be like: example@mail.com">
 
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
-						<span class="label-input100">E-POSTA</span>
+						<span class="label-input100">Email</span>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div>
 							<a href="index.php" class="txt1">
-								Şifremi Hatırladım
+								I remembered my password
 							</a>
 						</div>
 					</div>
@@ -106,7 +106,7 @@
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Kod Gönder
+							Send Code
 						</button>
 					</div>
 

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Admin Paneli</title>
+    <title>Admin Panel</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -52,13 +52,13 @@
                     <li>
                         <a href="index.php">
                             <i class="pe-7s-note2"></i>
-                            <p>Üye Listesi</p>
+                            <p>Member List</p>
                         </a>
                     </li>
                     <li class="active">
                         <a href="#">
                             <i class="pe-7s-user"></i>
-                            <p>Profili Güncelle</p>
+                            <p>Update Profile</p>
                         </a>
                     </li>
 
@@ -76,7 +76,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Profili Güncelle</a>
+                        <a class="navbar-brand" href="#">Update Profile</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
@@ -103,7 +103,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 id="title" class="title">Profili Güncelle</h4>
+                            <h4 id="title" class="title">Update Profile</h4>
                         </div>
                         <div class="content">
                             <!-- <form> -->
@@ -116,28 +116,28 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>E-Posta</label>
+                                        <label>Email</label>
                                         <input id="email" type="email" class="form-control" placeholder="asdf@gmail.com">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="admin">Yetki</label><br>
+                                        <label for="admin">Access</label><br>
                                         <input type="radio" id="member" name="access" value="0">
-                                        <label for="member">Üye</label><br>
+                                        <label for="member">Member</label><br>
                                         <input type="radio" id="admin" name="access" value="1">
-                                        <label for="admin">Yönetici</label><br>
+                                        <label for="admin">Manager</label><br>
                                     </div>
                                 </div>
 
                             </div>
                             
                             <form action="index.php">
-                                <button id="back" type="submit" class="btn btn-info btn-fill pull-left " style="margin-right:10px;"><- GERİ</button>
+                                <button id="back" type="submit" class="btn btn-info btn-fill pull-left " style="margin-right:10px;"><- BACK</button>
                             </form>
-                            <button id="delete" type="submit" class="btn btn-danger btn-fill pull-left ">Sil</button>
+                            <button id="delete" type="submit" class="btn btn-danger btn-fill pull-left ">Delete</button>
 
-                            <button id="update" type="submit" class="btn btn-info btn-fill pull-right">Güncelle</button>
+                            <button id="update" type="submit" class="btn btn-info btn-fill pull-right">Update</button>
                             <div class="clearfix"></div>
                             <!-- </form> -->
                         </div>
@@ -213,7 +213,7 @@
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-    // Sayfaya # ile verilen parametrelere göre sıralanması
+    // Sorting according to the parameters given to the page #
     var hashParams = window.location.hash.substr(1).split('&'); // substr(1) to remove the `#`
     for (var i = 0; i < hashParams.length; i++) {
         var p = hashParams[i].split('=');
@@ -243,14 +243,14 @@
         
         $('#delete').on('click', function() {
             Swal.fire({
-                title: 'Emin misiniz?',
-                text: "Bu işlem geri alınamaz!",
+                title: 'Are you sure?',
+                text: "This process cannot be taken back!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Kullanıcıyı Sil',
-                cancelButtonText: 'İptal'
+                confirmButtonText: 'Delete Member',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     var data = {
@@ -263,8 +263,7 @@
                         data: data,
                         success: function(result) {
                             if (result == "1") {
-                                // swal("Tebrikler", "Kullanıcı Silindi", "success");
-                                Swal.fire("Tebrikler", "Kullanıcı Silindi", "success");
+                                Swal.fire("Congratulations", "Member Deleted", "success");
                                 setTimeout(function (){
 
                                 // Something you want delayed.
@@ -272,8 +271,7 @@
                                 }, 2000);
                                 
                             } else {
-                                // swal("Hata", result, "error");
-                                Swal.fire("Hata", result, "error");
+                                Swal.fire("Error", result, "error");
                             }
                         }
                     });
@@ -301,16 +299,16 @@
                     if (result == "1") {
                         Swal.fire({
                             
-                            title:"Tebrikler", 
-                            text:"Kullanıcı Güncellendi", 
+                            title:"Congratulations", 
+                            text:"Member Updated", 
                             icon:"success",
-                            confirmButtonText:'Tamam'
+                            confirmButtonText:'Ok'
                             }
                             );
                             
                         setTimeout(function() {window.location.href = "index.php";}, 2000);
                     } else {
-                        Swal.fire("Hata", result, "error");
+                        Swal.fire("Error", result, "error");
                     }
                 }
             });

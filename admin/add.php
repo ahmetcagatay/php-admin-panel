@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Admin Paneli</title>
+    <title>Admin Panel</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -56,13 +56,13 @@
                     <li>
                         <a href="index.php">
                             <i class="pe-7s-note2"></i>
-                            <p>Üye Listesi</p>
+                            <p>Member List</p>
                         </a>
                     </li>
                     <li class="active">
                         <a href="#">
                             <i class="pe-7s-user"></i>
-                            <p>Ekle</p>
+                            <p>Add</p>
 
                         </a>
                     </li>
@@ -84,7 +84,7 @@
 
                             <a href="index.php">
                                 <button id="back" type="button" class="btn btn-info btn-fill pull-left " style="margin-right:10px;">
-                                    <- GERİ</button>
+                                    <- BACK</button>
                             </a>
                     </div>
                     <div class="collapse navbar-collapse">
@@ -107,47 +107,45 @@
 
 
             <div class="content">
-                <!-- <div class="container-fluid"> -->
-                <!-- <div class="row"> -->
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 id="title" class="title">Ekle</h4>
+                            <h4 id="title" class="title">Add</h4>
                         </div>
                         <div class="content">
                             <form action="">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="email-result">E-Posta</label>
+                                            <label class="email-result">Email</label>
                                             <input id="email" type="email" class="form-control" placeholder="asdf@gmail.com" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Şifre</label>
+                                            <label>Password</label>
                                             <input id="password" type="password" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="password-result">Şifre Tekrarı</label>
+                                            <label class="password-result">Confirm Password</label>
                                             <input id="confirm_password" type="password" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="admin">Yetki</label><br>
+                                            <label for="admin">Access</label><br>
                                             <input type="radio" id="member" name="access" value="0" required>
-                                            <label for="member">Üye</label><br>
+                                            <label for="member">Member</label><br>
                                             <input type="radio" id="admin" name="access" value="1">
-                                            <label for="admin">Yönetici</label><br>
+                                            <label for="admin">Manager</label><br>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <button id="add" type="submit" class="btn btn-primary btn-fill my-2 my-sm-0 pull-right"><i class="fa fa-plus" aria-hidden="true"></i>Ekle</button>
+                                <button id="add" type="submit" class="btn btn-primary btn-fill my-2 my-sm-0 pull-right"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
                             </form>
                             <div class="clearfix"></div>
                         </div>
@@ -175,9 +173,6 @@
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
@@ -191,8 +186,6 @@
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Validation -->
-<!-- <link href="../js/validation.js" rel="text/javascript"> -->
 
 
 <script type="text/javascript">
@@ -201,18 +194,18 @@
             console.log($('#password').val().length);
             if ($('#password').val() && $('#confirm_password').val() && ($('#confirm_password').val().length >= $('#password').val().length)) {
                 if ($('#password').val() == $('#confirm_password').val()) {
-                    $('.password-result').html('Şifre Eşleşiyor').css('color', 'green');
+                    $('.password-result').html('matched').css('color', 'green');
                 } else
-                    $('.password-result').html('Şifre Eşleşmiyor').css('color', 'red');
+                    $('.password-result').html('not matched').css('color', 'red');
             } else {
-                $('.password-result').html('Şifre Tekrarı').css("color", "#B7B8B7");
+                $('.password-result').html('Confirm Password').css("color", "#B7B8B7");
             }
 
         });
     });
 
 
-    // EMAİL DOĞRULAMA
+    // Email validation
     $(document).ready(function() {
         function validateEmail(email) {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -230,14 +223,14 @@
 
                 if (validateEmail($(this).val())) {
                     $(".email-result").css("color", "green");
-                    $(".email-result").text("E-posta girişi doğru");
+                    $(".email-result").text("Email style is correct");
                 } else {
                     $(".email-result").css("color", "red");
-                    $(".email-result").text("E-posta girişi yanlış");
+                    $(".email-result").text("Email style is incorrect");
                 };
             } else {
                 $(".email-result").css("color", "#9A9A9A");
-                $(".email-result").text("E-posta");
+                $(".email-result").text("Email");
             }
         });
     });
@@ -276,21 +269,21 @@
                                 if (result == "1") {
                                     Swal.fire({
 
-                                        title: "Tebrikler",
-                                        text: "Kullanıcı Eklendi",
+                                        title: "Congratulations!",
+                                        text: "Member Added",
                                         icon: "success",
-                                        confirmButtonText: 'Tamam'
+                                        confirmButtonText: 'Ok'
                                     });
                                     setTimeout(function() {
                                         window.location.href = "index.php";
                                     }, 2000);
                                 } else {
-                                    Swal.fire("Hata", result, "error");
+                                    Swal.fire("Error", result, "error");
                                 }
                             }
                         });
                     } else {
-                        Swal.fire("Hata", "E-posta önceden kullanılmış", "error");
+                        Swal.fire("Error", "E-mail used in advance", "error");
                     }
                 }
             });

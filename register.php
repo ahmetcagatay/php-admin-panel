@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Kayıt</title>
+	<title>Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -55,32 +55,32 @@
 						$crypto_password = md5(trim($_POST["pass"]));
 						// $password = $_POST["pass"];
 
-						// KULLANICIYI SORGULA
+
 						$sql = "SELECT * FROM members WHERE email='$email'";
 						$result = $conn->query($sql);
 
 						if ($result->num_rows > 0) {
-							// TÜM EŞLEŞEN SONUÇLARA BAK
+							// Look at all the matching results
 							while ($row = $result->fetch_assoc()) {
 								echo "id: " . $row["id"] . " <br>Name: " . $row["email"] . " <br>Password:  " . $row["password"] . "<br>";
 
-								// ŞİFRE DOĞRU İSE
+								// if password is matched
 								if ($row["password"] == $crypto_password) {
-									// ANA SAYFAYA YONLENDİR
+									// locate to main page
 									header("Location:main.php?email=$email");
 								} else {
-									echo "Şifre Yanlış";
+									echo "Password incorrect";
 								}
 							}
 						} else {
-							// echo "Kullanıcı adı veya şifre yanlış tekrar deneyiniz";
+							// echo "Username or password wrong, try again";
 
-							// KULLANICIYI KAYDET
+							// save member
 							$sql = "INSERT INTO members (email, password, access) 
 					VALUES ('$email', '$crypto_password', '0')";
 
 							if ($conn->query($sql) === TRUE) {
-								$feedback = "Kullanıcı Kaydedildi";
+								$feedback = "Member Saved";
 							} else {
 								echo "Error: " . $sql . "<br>" . $conn->error;
 							}
@@ -105,29 +105,27 @@
 						if (isset($feedback)) {
 							echo $feedback;
 						} else {
-							echo "Kayıt";
+							echo "Register";
 						}
 						?>
 					</span>
-
-					<div class="wrap-input100 validate-input" data-validate="Email adresiniz şu şekilde olmalıdır: ornek@mail.com">
-
+					<div class="wrap-input100 validate-input" data-validate="Email address it should be like: example@mail.com ">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
-						<span class="label-input100">E-posta</span>
+						<span class="label-input100">Email</span>
 					</div>
 
 
-					<div class="wrap-input100 validate-input" data-validate="Şifre gereklidir">
+					<div class="wrap-input100 validate-input" data-validate="password required">
 						<input class="input100" type="password" name="pass1" id="password">
 						<span class="focus-input100"></span>
-						<span class="label-input100">Şifre</span>
+						<span class="label-input100">Password</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Şifre tekrarı gereklidir">
+					<div class="wrap-input100 validate-input" data-validate="password confirm required">
 						<input class="input100" type="password" name="pass2" id="confirm_password">
 						<span class="focus-input100"></span>
-						<span class="label-input100" id="message">Şifre Tekrarı</span>
+						<span class="label-input100" id="message">Confirm Password</span>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
@@ -135,7 +133,7 @@
 
 						<div>
 							<a href="index.php" class="txt1">
-								Giriş Yap
+								Login
 							</a>
 						</div>
 					</div>
@@ -143,7 +141,7 @@
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Kayıt Ol
+							Register
 						</button>
 					</div>
 
@@ -154,46 +152,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!-- <form class="login100-form validate-form" method="POST">
-		<div class="wrap-input100 validate-input" data-validate="Email adresiniz şu şekilde olmalıdır: ornek@mail.com">
-
-			<input class="input100" type="text" name="email">
-			<span class="focus-input100"></span>
-			<span class="label-input100">E-posta</span>
-		</div>
-
-
-		<div class="wrap-input100 validate-input" data-validate="Şifre gereklidir">
-			<input class="input100" type="password" name="pass1" id="password">
-			<span class="focus-input100"></span>
-			<span class="label-input100">Şifre</span>
-		</div>
-
-		<div class="wrap-input100 validate-input" data-validate="Şifre tekrarı gereklidir">
-			<input class="input100" type="password" name="pass2" id="confirm_password">
-			<span class="focus-input100"></span>
-			<span class="label-input100" id="message">Şifre Tekrarı</span>
-		</div>
-
-		<div class="flex-sb-m w-full p-t-3 p-b-32">
-
-
-			<div>
-				<a href="index.php" class="txt1">
-					Giriş Yap
-				</a>
-			</div>
-		</div>
-		<div class="container-login100-form-btn">
-			<button class="login100-form-btn">
-				Kayıt Ol
-			</button>
-		</div>
-	</form> -->
-
-
 
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -222,11 +180,11 @@
 			$('#password, #confirm_password').on('keyup', function() {
 				if ($('#password').val() && $('#confirm_password').val()) {
 					if ($('#password').val() == $('#confirm_password').val()) {
-						$('#message').html('Şifre Eşleşiyor').css('color', 'green');
+						$('#message').html('matched').css('color', 'green');
 					} else
-						$('#message').html('Şifre Eşleşmiyor').css('color', 'red');
+						$('#message').html('not matched').css('color', 'red');
 				} else {
-					$('#message').html('Şifre Tekrarı').css("color", "#B7B8B7");
+					$('#message').html('Confirm Password').css("color", "#B7B8B7");
 				}
 
 			});

@@ -42,7 +42,7 @@
 						if ($_GET) {
 							$email = $_GET["email"];
 
-							echo "E-POSTA KONTROL</span><span class='login100-form-title p-b-43'>Lütfen e-postanızı kontrol edin
+							echo "EMAIL CONTROL</span><span class='login100-form-title p-b-43'>Please check your email
 							</span><span class='login100-form-title p-b-43'>$email";
 						}
 						else{

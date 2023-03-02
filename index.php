@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Giriş</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -52,16 +52,16 @@
 			$crypto_password = md5(trim($_POST["pass"]));
 			// $password = $_POST["pass"];
 
-			// KULLANICIYI SORGULA
+
 			$sql = "SELECT * FROM members WHERE email='$email'";
 			$result = $conn->query($sql);
 
 			if ($result->num_rows > 0) {
-				// TÜM EŞLEŞEN SONUÇLARA BAK
+				// Look at all the matching results
 				while ($row = $result->fetch_assoc()) {
-					// ŞİFRE DOĞRU İSE
+					// if password is matched
 					if ($row["password"] == $crypto_password) {
-						// ANA SAYFAYA YONLENDİR
+						// locate to main page
 						if ($row["access"] == "1"){
 
 							header("Location:admin/?email=$email");
@@ -70,11 +70,11 @@
 							header("Location:main.php?email=$email");
 						}
 					} else {
-						$feedback = "Şifre Yanlış";
+						$feedback = "Password wrong";
 					}
 				}
 			} else {
-				$feedback = "E-posta Bulunamadı. E-posta adresinizi adınızı doğru girdiğinizden emin olunuz.";
+				$feedback = "Not e-mail was found. Make sure you have entered your e-mail address correctly.";
 			}
 		}
 
@@ -89,20 +89,20 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="POST" action="">
-					<span class="login100-form-title p-b-20">Giriş</span>
+					<span class="login100-form-title p-b-20">Login</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Email adresiniz şu şekilde olmalıdır: ornek@mail.com">
+					<div class="wrap-input100 validate-input" data-validate="Email address it should be like: example@mail.com">
 
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
-						<span class="label-input100">E-posta</span>
+						<span class="label-input100">Email</span>
 					</div>
 
 
-					<div class="wrap-input100 validate-input" data-validate="Şifre gereklidir">
+					<div class="wrap-input100 validate-input" data-validate="Password required">
 						<input class="input100" type="password" name="pass">
 						<span class="focus-input100"></span>
-						<span class="label-input100">Şifre</span>
+						<span class="label-input100">Password</span>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
@@ -110,19 +110,19 @@
 
 						<div>
 							<a href="register.php" class="txt1">
-								Kayıt Ol
+								Register
 							</a>
 						</div>
 						<div>
 							<a href="passwordchange.php" class="txt1">
-								Şifremi Unuttum
+								I forgot my password
 							</a>
 						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Giriş Yap
+							Login
 						</button>
 					</div>
 

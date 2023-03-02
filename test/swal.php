@@ -9,7 +9,7 @@
 	<!-- <script src="js/sweatalert-custom.js"></script> -->
 
 </head>
-<button id="register-button" onclick="fSwal('warning')">Kayıt Ol</button>
+<button id="register-button" onclick="fSwal('warning')">Register</button>
 
 
 <!--SWEATALERT===============================================================================================-->

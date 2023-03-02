@@ -11,13 +11,12 @@ $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-    $feedback = "Database'e bağlanılamadı";
+    $feedback = "Could not be connected to Database";
 } else {
-    // TÜM LİSTEYİ SORGULA
     $sql = "SELECT * FROM members ORDER BY access DESC";
     $result = $conn->query($sql);
     if ($result->num_rows <= 0) {
-        $feedback = "Database'de satır bulunamadı";
+        $feedback = "No line was found in Database";
     }
 
 ?>
@@ -29,7 +28,7 @@ if ($conn->connect_error) {
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Admin Paneli</title>
+        <title>Admin Panel</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
@@ -77,16 +76,9 @@ if ($conn->connect_error) {
                             <a href="#">
 
                                 <i class="pe-7s-note2"></i>
-                                <p>Üye Listesi</p>
+                                <p>Member List</p>
                             </a>
                         </li>
-                        <!-- <li>
-                            <a href="member.php">
-                                <i class="pe-7s-user"></i>
-                                <p>Profili Güncelle</p>
-                            </a>
-                        </li> -->
-
                     </ul>
                 </div>
             </div>
@@ -101,7 +93,7 @@ if ($conn->connect_error) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a href="add.php"><button id="add" type="submit" class="navbar-left btn btn-primary btn-fill my-2 my-sm-0"><i class="fa fa-plus" aria-hidden="true"></i>Üye Ekle</button></a>
+                            <a href="add.php"><button id="add" type="submit" class="navbar-left btn btn-primary btn-fill my-2 my-sm-0"><i class="fa fa-plus" aria-hidden="true"></i>Add Member</button></a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -127,8 +119,8 @@ if ($conn->connect_error) {
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Tüm Üyeler</h4>
-                                        <p class="category">Mirket topluluğu üyelerini buradan araştırabilirsiniz.</p>
+                                        <h4 class="title">All Members</h4>
+                                        <p class="category">You can investigate the members of the Mirket Community here.</p>
 
 
 
@@ -137,9 +129,9 @@ if ($conn->connect_error) {
                                                 <thead>
                                                     <tr class="side-bar" id="tableHeader">
                                                         <th>ID </th>
-                                                        <th>E-POSTA </th>
-                                                        <th>YETKİ </th>
-                                                        <th>YÖNET</th>
+                                                        <th>EMAIL </th>
+                                                        <th>ACCESS </th>
+                                                        <th>MANAGE</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -151,14 +143,15 @@ if ($conn->connect_error) {
                                                     echo "<td>" . $row["id"] . "</td>";
                                                     echo "<td>" . $row["email"] . "</td>";
                                                     if ($row["access"] == "1") {
-                                                        echo "<td>Yönetici</td>";
+                                                        echo "<td>Manager</td>";
                                                     } else {
-                                                        echo "<td>Üye</td>";
+                                                        echo "<td>Member</td>";
                                                     }
                                                     echo "<td><a href=../admin/member.php#id=" . $row["id"] . "&email=" . $row["email"] . "&access=" . $row["access"] . "><i class='pe-7s-config' style='font-size:20px;' ></i></a></td>";
                                                     echo "</tr>";
                                                 }
                                             }
+
                                             $conn->close();
                                                 ?>
                                                 </tbody>
@@ -215,7 +208,7 @@ if ($conn->connect_error) {
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 
     <script type="text/javascript">
-        //DATATABLES
+        //DATA TABLES
         $(document).ready(function() {
             $('#users-table').DataTable();
         });
