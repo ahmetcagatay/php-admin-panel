@@ -42,10 +42,10 @@
 						if ($_GET) {
 							$email = $_GET["email"];
 
-							echo "HOŞGELDİNİZ</span><span class='login100-form-title p-b-43'>$email";
+							echo "WELCOME</span><span class='login100-form-title p-b-43'>$email";
 						}
 						else{
-							echo "Email Yok";
+							echo "No email";
 						}
 
 						?>

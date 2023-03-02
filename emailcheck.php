@@ -46,7 +46,7 @@
 							</span><span class='login100-form-title p-b-43'>$email";
 						}
 						else{
-							echo "Email Yok";
+							echo "No email";
 						}
 
 						?>
